@@ -7,6 +7,6 @@ function before (before, fn) {
 
 function logFunc(fn) {
 	window[fn] = before(function() {
-		console.log('%crunning ' + fn, 'color:magenta');
+		console.info('%crunning ' + fn, 'color:magenta');
 	}, window[fn]);
 }
