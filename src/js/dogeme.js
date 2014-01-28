@@ -22,7 +22,7 @@ function do_doge(iMakeItFail) {
 	   			throw new Error("this is supposed to happen. ya rly.");	
 	   		}
 	   		
-	   		return requestRandomWord();
+	   		return chooseRandomWord();
 	   })
 	   .then(function(word3) {
    			words.push(word3);

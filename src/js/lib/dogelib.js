@@ -41,3 +41,19 @@ function requestRandomWord() {
 	
 	return dfd.promise;
 }
+
+function chooseRandomWord() {
+	var dfd = Q.defer(),
+		choiceOfWords = ['rectangle', 'america', 'megaphone', 'monday', 'butthole'],
+		randomIndex;
+
+	if (makeItFail) {
+		throw new Error('borked');
+	}
+
+	randomIndex = Math.round(Math.random() * (choiceOfWords.length-1));
+
+	dfd.resolve(choiceOfWords[randomIndex]);
+	
+	return dfd.promise;
+}
