@@ -11,22 +11,27 @@ function itFailed() {
 }
 
 function do_doge(iMakeItFail) {
-	requestRandomWord()
-	   .then(function(word1) {
+	requestRandomWord(function(word1) {
 	   		words.push(word1);
-	   		return requestRandomWord();
-	   })
-	   .then(function(word2) {
-	   		words.push(word2);
+	   		return chooseRandomWord(function(word2) {
+		   		words.push(word2);
 
-			if (window.location.search.match(/throwErrorInHandler=true/) !== null) {
-	   			throw new Error("fulfillment handler fails");	
-	   		}
-	   		
-	   		return chooseRandomWord();
-	   })
-	   .then(function(word3) {
-   			words.push(word3);
-		})
-	   .done(itWorked, itFailed);
+		   		try {
+		   			if (window.location.search.match(/throwErrorInHandler=true/) !== null) {
+			   			throw new Error("fulfillment handler fails");	
+			   		}
+		   		} catch(e) {
+		   			 itFailed();
+		   			 return;
+		   		}
+		   		
+		   		return requestRandomWord(function(word3) {
+		   			words.push(word3);
+		   			itWorked();
+				},
+				itFailed);
+		   },
+		   itFailed);
+	   }, 
+	   itFailed);
 }

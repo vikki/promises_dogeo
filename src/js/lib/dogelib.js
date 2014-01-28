@@ -28,9 +28,7 @@ function getDogrUrl(dogeInputs) {
 	return dogrUrl;
 }
 
-function requestRandomWord() {
-	var dfd = Q.defer();
-
+function requestRandomWord(onSuccess, onError) {
 	var url = 'http://randomword.setgetgo.com/get.php';
 	if (window.location.search.match(/errorHandler=true/) !== null) {
 		url = 'http://www.blabla.com/';
@@ -39,29 +37,25 @@ function requestRandomWord() {
 	$.ajax({
 		url: url, 
 		success: function(e) {
-			dfd.resolve(e.Word);
+			onSuccess(e.Word);
 		},
-		failure: function(error) {
-			dfd.reject(error);
+		error: function(error) {
+			onError(error);
 		},
 		dataType: 'jsonp'
 	});
-	
-	return dfd.promise;
 }
 
-function chooseRandomWord() {
-	var dfd = Q.defer(),
-		choiceOfWords = ['rectangle', 'america', 'megaphone', 'monday', 'butthole'],
+function chooseRandomWord(onSuccess, onError) {
+	var choiceOfWords = ['rectangle', 'america', 'megaphone', 'monday', 'butthole'],
 		randomIndex;
 
 	if (window.location.search.match(/throwErrorInCaller=true/) !== null) {
-		throw new Error('promise has chucked a big error');
+		onError('promise has chucked a big error');
+		return;
 	}
 
 	randomIndex = Math.round(Math.random() * (choiceOfWords.length-1));
 
-	dfd.resolve(choiceOfWords[randomIndex]);
-	
-	return dfd.promise;
+	onSuccess(choiceOfWords[randomIndex]);
 }
