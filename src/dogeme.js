@@ -1,13 +1,19 @@
 function do_doge() {
-	requestRandomWord(function(word1) {
-		requestRandomWord(function(word2) {
-			requestRandomWord(function(word3) {
-				var words = [].concat(word1, word2, word3);
-				console.dir(words);
-				getDogrImg(words);
-			});
+	var words = [];
+
+	requestRandomWord()
+	   .then(function(word1) {
+	   		words.push(word1);
+	   		return requestRandomWord();
+	   })
+	   .then(function(word2) {
+	   		words.push(word2);
+	   		return requestRandomWord();
+	   })
+	   .then(function(word3) {
+   			words.push(word3);
+			getDogrImg(words);
 		});
-	});
 }
 
 function getDogrImg(dogeInputs) {
@@ -36,14 +42,18 @@ function getDogrUrl(dogeInputs) {
 	return dogrUrl;
 }
 
-function requestRandomWord(callback) {
+function requestRandomWord() {
+	var dfd = Q.defer();
+
 	$.ajax({
 		url: 'http://randomword.setgetgo.com/get.php', 
 		success: function(e) {
-			callback(e.Word);
+			dfd.resolve(e.Word);
 		},
 		dataType: 'jsonp'
 	});
+	
+	return dfd.promise;
 }
 
 do_doge();
