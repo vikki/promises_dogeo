@@ -10,7 +10,7 @@ function itFailed() {
 	getDogrImg(getDogeErrorInputs());
 }
 
-function do_doge() {
+function do_doge(iMakeItFail) {
 	requestRandomWord()
 	   .then(function(word1) {
 	   		words.push(word1);
@@ -18,7 +18,10 @@ function do_doge() {
 	   })
 	   .then(function(word2) {
 	   		words.push(word2);
-	   		//throw new Error("ergh");
+	   		if (iMakeItFail) {
+	   			throw new Error("this is supposed to happen. ya rly.");	
+	   		}
+	   		
 	   		return requestRandomWord();
 	   })
 	   .then(function(word3) {

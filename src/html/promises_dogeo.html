@@ -15,7 +15,11 @@
 		logFunc('itWorked');
 		logFunc('itFailed');
 
-		do_doge();
+		var makeItFail = false;
+		if (window.location.search.match(/fail=true/) !== null) {
+			makeItFail = true;
+		}
+		do_doge(makeItFail);
 	</script>
 </head>
 <body>
