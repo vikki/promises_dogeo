@@ -1,24 +1,28 @@
-function do_doge() {
-	var words = [];
+var words = [];
 
+// yeah you can write both of these more functionally 
+// with bind but i was trying not to be too confusing
+function itWorked() {
+	getDogrImg(words);
+}
+
+function itFailed() {
+	getDogrImg(getDogeErrorInputs());
+}
+
+function do_doge() {
 	requestRandomWord()
 	   .then(function(word1) {
-	   		console.log('get word 1');
 	   		words.push(word1);
 	   		return requestRandomWord();
 	   })
 	   .then(function(word2) {
-	   		console.log('get word 2');
 	   		words.push(word2);
 	   		//throw new Error("ergh");
 	   		return requestRandomWord();
 	   })
 	   .then(function(word3) {
-	   		console.log('get word 3');
    			words.push(word3);
-			getDogrImg(words);
 		})
-	   .catch(function(e) {
-	   	  console.log('it broke' + e);
-	   })
+	   .done(itWorked, itFailed);
 }
