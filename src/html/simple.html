@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple</title>
+
+	<script src="../../node_modules/q/q.js"></script>
+	<script src="../js/lib/logme.js"></script>
+	<script src="../js/simple.js"></script>
+
+	<script>
+		function onSuccess(answer) {
+			console.log('yay ' + answer);
+		}
+
+		function onFailure(error) {
+			console.log('boo ' + error);
+		}
+
+		logFunc('divide');
+		logFunc('onSuccess');
+		logFunc('onFailure');
+
+		divide(8, 0, onSuccess, onFailure);
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>
