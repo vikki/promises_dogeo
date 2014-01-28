@@ -1,0 +1,17 @@
+{
+  "name": "promises_dogeo",
+  "version": "0.0.1",
+  "description": "A dogeo / dojo using doge, for practicing using promises",
+  "main": "index.js",
+  "dependencies": {
+    "q": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git@github.com:vikki/promises_dogeo.git",
+  "author": "",
+  "license": "BSD",
+  "gitHead": "06270e6e975d018d84a48ac0dfe200163d8ab5be"
+}
