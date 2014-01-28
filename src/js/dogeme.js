@@ -18,8 +18,9 @@ function do_doge(iMakeItFail) {
 	   })
 	   .then(function(word2) {
 	   		words.push(word2);
-	   		if (iMakeItFail) {
-	   			throw new Error("this is supposed to happen. ya rly.");	
+
+			if (window.location.search.match(/throwErrorInHandler=true/) !== null) {
+	   			throw new Error("fulfillment handler fails");	
 	   		}
 	   		
 	   		return chooseRandomWord();

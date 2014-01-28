@@ -9,23 +9,29 @@
 	<script src="../js/lib/logme.js"></script>
 	<script src="../js/dogeme.js"></script>
 
-	<script>	
+	<script>
 		logFunc('requestRandomWord');
 		logFunc('getDogrImg');
 		logFunc('itWorked');
 		logFunc('itFailed');
 		logFunc('chooseRandomWord');
 
-		var makeItFail = false;
-		if (window.location.search.match(/fail=true/) !== null) {
-			makeItFail = true;
-		}
-		do_doge(makeItFail);
+		do_doge();
 	</script>
 </head>
 <body>
 
+	<h1>Promises Dogeo</h1>
+	<p>You can make the promises break in various different ways to learn about promisey-goodness.Add the following to the query string to see what happens (check out the console for more info)</p>
 
+	<dl>
+		<dt>throwErrorInHandler=true</dt>
+			<dd>Throw an error in the handler</dd>
+		<dt>throwErrorInCaller=true</dt>
+			<dd>Throw an error in one of the async functions</dd>
+		<dt>errorHandler=true</dt>
+			<dd>Call the error handler instead of the  success handler</dd>
+	</dl>
 
 </body>
 </html>

@@ -31,10 +31,18 @@ function getDogrUrl(dogeInputs) {
 function requestRandomWord() {
 	var dfd = Q.defer();
 
+	var url = 'http://randomword.setgetgo.com/get.php';
+	if (window.location.search.match(/errorHandler=true/) !== null) {
+		url = 'http://www.blabla.com/';
+	}
+
 	$.ajax({
-		url: 'http://randomword.setgetgo.com/get.php', 
+		url: url, 
 		success: function(e) {
 			dfd.resolve(e.Word);
+		},
+		failure: function(error) {
+			dfd.reject(error);
 		},
 		dataType: 'jsonp'
 	});
@@ -47,8 +55,8 @@ function chooseRandomWord() {
 		choiceOfWords = ['rectangle', 'america', 'megaphone', 'monday', 'butthole'],
 		randomIndex;
 
-	if (makeItFail) {
-		throw new Error('borked');
+	if (window.location.search.match(/throwErrorInCaller=true/) !== null) {
+		throw new Error('promise has chucked a big error');
 	}
 
 	randomIndex = Math.round(Math.random() * (choiceOfWords.length-1));
