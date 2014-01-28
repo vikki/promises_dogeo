@@ -1,3 +1,5 @@
+![Very Asynchronous Transformations](http://dogr.io/wow/suchbuskingit/muchcallbackaggregation/verytransformations.png)
+
 A repo for learning how to refactor callback style code into promises. I've committed my versions of the code in promise-stylee, but the idea is that you check out what's here and refactor it into promises, and hopefully it looks nicer once you've finished.
 
 We're using [q](https://github.com/kriskowal/q) so that we get the full chaining behaviour of promises, as the jquery implementation doesn't chain promises as per the A+ spec (and IMHO that's a lot of the benefit of this refactor)
