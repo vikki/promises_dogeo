@@ -1,7 +1,10 @@
-function divide(x, y, onSuccess, onFail) {
+function divide(x, y) {
+	var dfd = Q.defer();
+
 	if (y <=1 ){
-		onFail('div by zero');
-		return;
+		dfd.reject('div by zero');
 	}
-	onSuccess(x / y);
+	dfd.resolve(x / y);
+
+	return dfd.promise;
 }
